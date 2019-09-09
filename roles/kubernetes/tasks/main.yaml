@@ -1,0 +1,2 @@
+- include: kubectl.yaml tags=kubectl
+- include: k9s.yaml tags=k9s

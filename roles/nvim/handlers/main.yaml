@@ -1,0 +1,6 @@
+- name: refresh vim conf
+  shell: |
+    nvim +PlugInstall +qall
+    nvim +UpdateRemotePlugins +qall
+    nvim +PlugUpdate +qall
+    nvim +GoInstallBinaries +qall

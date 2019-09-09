@@ -1,0 +1,35 @@
+- name: Install the machine pre-requistes
+  hosts: localhost
+  pre_tasks:
+    - name: Add docker-ce repository
+      become: true
+      yum_repository:
+        name: docker-ce
+        description: docker-ce repo
+        baseurl: https://download.docker.com/linux/fedora/docker-ce.repo
+
+    - name: Install needed packages
+      become: true
+      dnf:
+        name:
+          - python3-black
+          - python3-neovim
+          - powerline-fonts
+          - highlight
+          - docker-ce
+          - docker-ce-cli
+          - containerd.io
+          - zsh
+          - jq
+          - figlet
+        state: latest
+
+
+  roles:
+    - name: nvim
+    - name: oh-my-zsh
+    - name: kubernetes
+      become: true
+    - name: gcloud
+      become: true
+

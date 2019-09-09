@@ -1,0 +1,22 @@
+- name: Get latest release name
+  uri: 
+    url: https://api.github.com/repos/derailed/k9s/tags
+    headers:
+      content-type: application/json
+    return_content: true
+  register: k9s_releases
+
+- set_fact:
+    k9s_release: '{{ (k9s_releases.content|from_json)[0]["name"] }}'
+
+- name: Get the binary
+  unarchive:                                                                              
+    src: 'https://github.com/derailed/k9s/releases/download/{{ k9s_release }}/k9s_{{ k9s_release }}_Linux_x86_64.tar.gz'
+    dest: /usr/bin/                                                                                                   
+    extra_opts:
+      - k9s
+    remote_src: true
+    owner: root
+    group: root
+    mode: 0755
+

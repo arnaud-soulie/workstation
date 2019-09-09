@@ -1,0 +1,44 @@
+- name: Ensure oh-my-zsh not installed
+  stat:
+    path: '{{ ansible_env.HOME }}/.oh-my-zsh'
+  register: oh_my_zsh_folder
+
+- name: Download oh-my-zsh installer
+  get_url: 
+    url: https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh 
+    dest: /tmp/oh-my-zsh-installer.sh
+    mode: 0775
+  when: not oh_my_zsh_folder.stat.exists
+
+- name: Execute /tmp/oh-my-zsh-installer.sh
+  script: /tmp/oh-my-zsh-installer.sh
+  when: not oh_my_zsh_folder.stat.exists
+
+- name: Remove /tmp/oh-my-zsh-installer.sh
+  file: 
+    path: /tmp/oh-my-zsh-installer.sh
+    state: absent
+  when: not oh_my_zsh_folder.stat.exists
+
+- name: Get autosuggestion plugin
+  git:
+    repo: https://github.com/zsh-users/zsh-autosuggestions
+    dest: '{{ ansible_env.HOME }}/.zsh/zsh-autosuggestions'
+
+- name: Configure oh-my-zsh theme 
+  lineinfile:
+    path: '{{ ansible_env.HOME }}/.zshrc'
+    regexp: '^ZSH_THEME='
+    line: ZSH_THEME="avit"
+
+- name: Configure nvim alias
+  lineinfile:
+    path: '{{ ansible_env.HOME }}/.zshrc'
+    regexp: '^alias vi='
+    line: alias vi="nvim"
+
+- name: source autosuggestion plugin
+  lineinfile:
+    path: '{{ ansible_env.HOME }}/.zshrc'
+    line: 'source {{ ansible_env.HOME }}/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh'
+
