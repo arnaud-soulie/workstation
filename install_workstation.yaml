@@ -19,15 +19,14 @@
           - docker-ce
           - docker-ce-cli
           - containerd.io
-          - zsh
           - jq
           - figlet
         state: latest
 
 
   roles:
+    - name: zsh
     - name: nvim
-    - name: oh-my-zsh
     - name: kubernetes
       become: true
     - name: gcloud

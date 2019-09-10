@@ -1,11 +1,17 @@
+- name: Install zsh
+  become: true
+  dnf:
+    name: zsh
+    state: latest
+
 - name: Ensure oh-my-zsh not installed
   stat:
     path: '{{ ansible_env.HOME }}/.oh-my-zsh'
   register: oh_my_zsh_folder
 
 - name: Download oh-my-zsh installer
-  get_url: 
-    url: https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh 
+  get_url:
+    url: https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh
     dest: /tmp/oh-my-zsh-installer.sh
     mode: 0775
   when: not oh_my_zsh_folder.stat.exists
@@ -15,7 +21,7 @@
   when: not oh_my_zsh_folder.stat.exists
 
 - name: Remove /tmp/oh-my-zsh-installer.sh
-  file: 
+  file:
     path: /tmp/oh-my-zsh-installer.sh
     state: absent
   when: not oh_my_zsh_folder.stat.exists
@@ -25,7 +31,7 @@
     repo: https://github.com/zsh-users/zsh-autosuggestions
     dest: '{{ ansible_env.HOME }}/.zsh/zsh-autosuggestions'
 
-- name: Configure oh-my-zsh theme 
+- name: Configure oh-my-zsh theme
   lineinfile:
     path: '{{ ansible_env.HOME }}/.zshrc'
     regexp: '^ZSH_THEME='
