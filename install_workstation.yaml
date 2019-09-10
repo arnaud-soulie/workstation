@@ -11,24 +11,30 @@
     - name: Install needed packages
       become: true
       dnf:
-        name:
-          - python3-black
-          - python3-neovim
-          - powerline-fonts
-          - highlight
-          - docker-ce
-          - docker-ce-cli
-          - containerd.io
-          - jq
-          - figlet
+        name: '{{item }}'
         state: latest
+      loop:
+        - terminator
+        - python3-ipython
+        - python3-black
+        - python3-neovim
+        - pipenv
+        - powerline-fonts
+        - highlight
+        - docker-ce
+        - docker-ce-cli
+        - containerd.io
+        - jq
+        - figlet
+        - pass
 
 
   roles:
+    - name: golang
+      become: true
     - name: zsh
     - name: nvim
     - name: kubernetes
-      become: true
     - name: gcloud
       become: true
 

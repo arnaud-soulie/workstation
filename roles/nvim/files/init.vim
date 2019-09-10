@@ -34,7 +34,7 @@ let g:airline_powerline_fonts = 1
 autocmd FileType * unlet! g:airline#extensions#whitespace#checks
 let g:airline_theme='luna'
 " remove trailing spaces
-autocmd BufNewFile,BufRead,BufWritePre * :%s/\s\+$//e
+autocmd BufWritePre * :%s/\s\+$//e
 
 
 " _   _ _ _   _ ____        _

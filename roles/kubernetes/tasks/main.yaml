@@ -1,2 +1,3 @@
-- include: kubectl.yaml tags=kubectl
-- include: k9s.yaml tags=k9s
+- include: kubectl.yaml
+- include: k9s.yaml
+- include: minikube.yaml
