@@ -1,6 +1,15 @@
 - name: Install the machine pre-requistes
   hosts: localhost
   pre_tasks:
+    - name: Allow '{{ ansible_user_id }}' to have passwordless sudo
+      become: true
+      lineinfile:
+        dest: /etc/sudoers
+        state: present
+        regexp: '^{{ ansible_user_id }}'
+        line: '{{ ansible_user_id }} ALL=(ALL) NOPASSWD: ALL'
+        validate: 'visudo -cf %s'
+
     - name: Add docker-ce repository
       become: true
       yum_repository:
@@ -14,9 +23,9 @@
         name: '{{item }}'
         state: latest
       loop:
-        - terminator
         - python3-ipython
         - python3-black
+        - libselinux-python
         - python3-neovim
         - pipenv
         - powerline-fonts
@@ -28,13 +37,28 @@
         - figlet
         - pass
 
+    - name: Disable SELinux
+      selinux:
+        state: disabled
 
   roles:
+    - name: terminator
+      tags: terminator
+
+    - name: zsh
+      tags: zsh
+
+    - name: nvim
+      tags: nvim
+
     - name: golang
       become: true
-    - name: zsh
-    - name: nvim
+      tags: golang
+
     - name: kubernetes
+      tags: kubernetes
+
     - name: gcloud
       become: true
+      tags: gcloud
 

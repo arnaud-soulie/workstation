@@ -19,5 +19,5 @@
   blockinfile:
     path: '{{ ansible_env.HOME }}/.zshrc'
     block: |
-      PATH=$PATH:/usr/bin/go/bin
-      export PATH
+      export GOPATH=$HOME/goprojects
+      export PATH=$PATH:/usr/bin/go/bin:$GOPATH/bin

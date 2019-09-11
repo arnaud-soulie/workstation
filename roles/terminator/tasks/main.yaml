@@ -1,0 +1,17 @@
+- name: Get terminator
+  become: true
+  dnf:
+    name: 'terminator'
+    state: latest
+
+- name: Create terminator folders
+  file:
+    path: '{{ ansible_env.HOME }}/.config/terminator'
+    state: directory
+    recurse: true
+
+- name: Set terminator configuration
+  copy:
+    src: config
+    dest: '{{ ansible_env.HOME }}/.config/terminator/config'
+

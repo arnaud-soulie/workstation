@@ -26,19 +26,12 @@
 
 
 - name: Download docker-machine-driver-kvm2 installer
+  become: true
   get_url:
     url: https://storage.googleapis.com/minikube/releases/latest/docker-machine-driver-kvm2
-    dest: /tmp/docker-machine-driver-kvm2
+    dest: /usr/local/bin/docker-machine-driver-kvm2
+    owner: root
+    group: root
     mode: 0775
     #  when: not oh_my_zsh_folder.stat.exists
 
-- name: Execute /tmp/docker-machine-driver-kvm2
-  become: true
-  script: /tmp/docker-machine-driver-kvm2 /usr/local/bin/
-  #  when: not oh_my_zsh_folder.stat.exists
-
-- name: Remove /tmp/docker-machine-driver-kvm2
-  file:
-    path: /tmp/docker-machine-driver-kvm2
-    state: absent
-    #  when: not oh_my_zsh_folder.stat.exists
