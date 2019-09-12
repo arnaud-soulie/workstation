@@ -37,6 +37,11 @@
     regexp: '^ZSH_THEME='
     line: ZSH_THEME="avit"
 
+- name: Print user on promt
+  lineinfile:
+    path: '{{ ansible_env.HOME }}/.zshrc'
+    line: 'export me=$USER'
+
 - name: Configure nvim alias
   lineinfile:
     path: '{{ ansible_env.HOME }}/.zshrc'
