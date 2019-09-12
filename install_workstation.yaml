@@ -23,16 +23,7 @@
         name: '{{item }}'
         state: latest
       loop:
-        - python3-ipython
-        - python3-black
         - libselinux-python
-        - python3-neovim
-        - pipenv
-        - powerline-fonts
-        - highlight
-        - docker-ce
-        - docker-ce-cli
-        - containerd.io
         - jq
         - figlet
         - pass
@@ -50,6 +41,9 @@
 
     - name: nvim
       tags: nvim
+
+    - name: python
+      tags: python
 
     - name: golang
       become: true

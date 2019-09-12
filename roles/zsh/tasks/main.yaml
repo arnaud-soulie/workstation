@@ -1,8 +1,12 @@
-- name: Install zsh
+- name: Install zsh and dependencies
   become: true
   dnf:
-    name: zsh
+    name: '{{ item }}'
     state: latest
+  loop:
+    - zsh
+    - powerline-fonts
+    - highlight
 
 - name: Ensure oh-my-zsh not installed
   stat:

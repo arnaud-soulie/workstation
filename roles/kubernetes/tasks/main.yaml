@@ -1,3 +1,13 @@
+- name: pre-requistes
+  become: true
+  dnf:
+    name: '{{ item }}'
+    state: latest
+  loop:
+    - docker-ce
+    - docker-ce-cli
+    - containerd.io
+
 - include: kubectl.yaml
 - include: k9s.yaml
 - include: minikube.yaml

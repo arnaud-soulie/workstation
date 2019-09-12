@@ -1,2 +1,4 @@
 #!/bin/bash
-ansible-playbook install_workstation.yaml && source ~/.zshrc
+ansible-playbook install_workstation.yaml
+sleep 3
+source ~/.zshrc
