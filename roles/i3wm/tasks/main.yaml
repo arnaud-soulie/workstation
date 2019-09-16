@@ -1,0 +1,44 @@
+- name: Install i3 and dependencies
+  become: true
+  dnf:
+    name: '{{ item }}'
+    state: latest
+  loop:
+    - i3
+    - i3status
+    - dmenu
+    - xbacklight
+    - feh
+    - conky
+    - xrandr
+    - i3lock
+    - scrot
+    - xautolock
+    - fontawesome-fonts
+    - powerline-fonts
+    - highlight
+
+- name: Ensure i3 config folder exists
+  file:
+    path: '{{ ansible_env.HOME }}/.config/i3'
+    state: directory
+    recurse: true
+
+- name: Get Bumblebee status bar
+  git:
+    repo: https://github.com/tobi-wan-kenobi/bumblebee-status.git
+    dest: '{{ ansible_env.HOME }}/.config/i3/bumblebee-status'
+
+- name: Set i3wm configuration
+  copy:
+    src: config
+    dest: '{{ ansible_env.HOME }}/.config/i3'
+
+- name: Copy i3wm scripts
+  copy:
+    src: '{{ item }}'
+    dest: '{{ ansible_env.HOME }}/.config/i3/'
+    mode: 0775
+  loop:
+    - lock.sh
+    - monitor.sh

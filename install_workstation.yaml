@@ -27,12 +27,17 @@
         - jq
         - figlet
         - pass
+        - signal-desktop
+        - numlockx
 
     - name: Disable SELinux
       selinux:
         state: disabled
 
   roles:
+    - name: i3wm
+      tags: i3wm
+
     - name: terminator
       tags: terminator
 
@@ -56,3 +61,5 @@
       become: true
       tags: gcloud
 
+    - name: rambox
+      tags: rambox

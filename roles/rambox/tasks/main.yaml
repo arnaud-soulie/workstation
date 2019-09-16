@@ -1,0 +1,15 @@
+- name: Get latest release name
+  uri:
+    url: https://api.github.com/repos/ramboxapp/community-edition/tags
+    headers:
+      content-type: application/json
+    return_content: true
+  register: rambox_releases
+
+- set_fact:
+    rambox_release: '{{ (rambox_releases.content|from_json)[0]["name"] }}'
+
+- name: install latest version
+  become: true
+  dnf:
+    name: 'https://github.com/ramboxapp/community-edition/releases/download/{{ rambox_release }}/Rambox-{{ rambox_release }}-linux-x86_64.rpm'
