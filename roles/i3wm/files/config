@@ -214,3 +214,7 @@ exec xautolock -time 5 -locker '~/.config/i3/lock.sh' &
 #  \____|_|\___/|_.__/ \__,_|_|
 #
 exec_always --no-startup-id numlockx on
+
+# screenshots
+bindsym Shift+Print exec scrot -s -b 'screenshot_%Y%m%d%H%M%S.jpg' -e 'mv $f ~/screenshots/'
+bindsym Print exec scrot 'screenshot_%Y%m%d%H%M%S.jpg' -e 'mv $f ~/screenshots/'

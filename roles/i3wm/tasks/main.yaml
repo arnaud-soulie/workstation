@@ -18,11 +18,14 @@
     - powerline-fonts
     - highlight
 
-- name: Ensure i3 config folder exists
+- name: Ensure i3 mandatory folders exist
   file:
-    path: '{{ ansible_env.HOME }}/.config/i3'
+    path: '{{ ansible_env.HOME }}/{{ item }}'
     state: directory
     recurse: true
+  loop:
+    - '.config/i3'
+    - 'screenshots'
 
 - name: Get Bumblebee status bar
   git:
