@@ -8,8 +8,8 @@ then
 	i3-msg '[workspace=".*"]' move workspace to output ${main_screen_id}
 else
 	xrandr --output ${second_screen_id} --right-of ${main_screen_id} --rotate left
-	i3-msg '[workspace="1. Terminator"]' move workspace to output ${second_screen_id}
-	i3-msg '[workspace="2. Firefox"]' move workspace to output ${main_screen_id}
-	i3-msg '[workspace="3. Rambox"]' move workspace to output ${main_screen_id}
-	i3-msg '[workspace="4. Signal"]' move workspace to output ${main_screen_id}
+	i3-msg '[workspace="1|"]' move workspace to output ${second_screen_id}
+	i3-msg '[workspace="2|"]' move workspace to output ${main_screen_id}
+	i3-msg '[workspace="3|"]' move workspace to output ${main_screen_id}
+	i3-msg '[workspace="4|"]' move workspace to output ${main_screen_id}
 fi

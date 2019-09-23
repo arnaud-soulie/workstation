@@ -17,6 +17,9 @@
     - fontawesome-fonts
     - powerline-fonts
     - highlight
+    - pulseaudio
+    - pavucontrol
+    - numlockx
 
 - name: Ensure i3 mandatory folders exist
   file:
