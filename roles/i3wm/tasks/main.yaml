@@ -20,6 +20,7 @@
     - pulseaudio
     - pavucontrol
     - numlockx
+    - nautilus
 
 - name: Ensure i3 mandatory folders exist
   file:
