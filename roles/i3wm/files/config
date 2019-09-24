@@ -216,8 +216,8 @@ exec xautolock -time 5 -locker '~/.config/i3/lock.sh' &
 exec_always --no-startup-id numlockx on
 
 # screenshots
-bindsym --release Print exec scrot -s 'screenshot_%Y%m%d%H%M%S.jpg' -e 'mv $f ~/screenshots/'
-bindsym Shift+Print exec scrot 'screenshot_%Y%m%d%H%M%S.jpg' -e 'mv $f ~/screenshots/'
+bindsym --release Shift+Print exec scrot ~/screenshots/screenshot_$(date +%Y%m%d%H%M%S).png
+bindsym --release Print exec scrot -s ~/screenshots/screenshot_$(date +%Y%m%d%H%M%S).png -e 'xclip -selection c -t image/png < $f'
 
 
 #     _             _ _
