@@ -91,7 +91,7 @@ let g:terraform_fmt_on_save=1
 au FileType python set expandtab
 au FileType python set shiftwidth=4
 au FileType python set softtabstop=4
-au FileType python set tabstop=
+au FileType python set tabstop=4
 "    Highlighting
 "    Code amelioration
 "    On save
