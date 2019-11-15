@@ -28,3 +28,8 @@
   notify:
     - refresh vim conf
 
+- name: Configure nvim alias
+  lineinfile:
+    path: '{{ ansible_env.HOME }}/.zshrc'
+    regexp: '^alias vi='
+    line: alias vi="nvim"

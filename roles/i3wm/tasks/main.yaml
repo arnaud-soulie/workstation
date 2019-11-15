@@ -12,6 +12,7 @@
     - conky
     - xrandr
     - i3lock
+    - 'http://download-ib01.fedoraproject.org/pub/fedora/linux/releases/30/Everything/x86_64/os/Packages/g/giblib-1.2.4-28.fc28.x86_64.rpm'
     - scrot
     - xautolock
     - fontawesome-fonts
@@ -21,6 +22,7 @@
     - pavucontrol
     - numlockx
     - nautilus
+    - python3-netifaces
 
 - name: Ensure i3 mandatory folders exist
   file:

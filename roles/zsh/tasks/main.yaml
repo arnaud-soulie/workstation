@@ -46,14 +46,13 @@
     path: '{{ ansible_env.HOME }}/.zshrc'
     line: 'export me=$USER'
 
-- name: Configure nvim alias
-  lineinfile:
-    path: '{{ ansible_env.HOME }}/.zshrc'
-    regexp: '^alias vi='
-    line: alias vi="nvim"
-
 - name: source autosuggestion plugin
   lineinfile:
     path: '{{ ansible_env.HOME }}/.zshrc'
     line: 'source {{ ansible_env.HOME }}/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh'
 
+- name: Change '{{ ansible_user }}' default shell
+  become: true
+  user:
+    name: '{{ ansible_user }}'
+    shell: /usr/bin/zsh

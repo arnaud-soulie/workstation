@@ -10,7 +10,7 @@
   get_url:
     url: 'https://storage.googleapis.com/kubernetes-release/release/{{ kubectl_release.content | trim }}/bin/linux/amd64/kubectl'
     dest: /usr/bin/kubectl
-    remote_src: true
+    remote_src: True
     owner: root
     group: root
     mode: 0755

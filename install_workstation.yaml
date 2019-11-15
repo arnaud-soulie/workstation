@@ -10,24 +10,15 @@
         line: '{{ ansible_user_id }} ALL=(ALL) NOPASSWD: ALL'
         validate: 'visudo -cf %s'
 
-    - name: Add docker-ce repository
-      become: true
-      yum_repository:
-        name: docker-ce
-        description: docker-ce repo
-        baseurl: https://download.docker.com/linux/fedora/docker-ce.repo
-
     - name: Install needed packages
       become: true
       dnf:
         name: '{{item }}'
         state: latest
       loop:
-        - libselinux-python
         - jq
         - figlet
         - pass
-        - signal-desktop
         - numlockx
 
     - name: Disable SELinux
@@ -63,3 +54,6 @@
 
     - name: rambox
       tags: rambox
+
+    - name: enpass
+      tags: enpass

@@ -1,0 +1,12 @@
+- name: Add enpass repository
+  become: true
+  yum_repository:
+    name: enpass
+    description: enpass repo
+    baseurl: https://yum.enpass.io/enpass-yum.repo
+
+- name: Install enpass
+  become: true
+  dnf:
+    name: enpass
+    state: latest

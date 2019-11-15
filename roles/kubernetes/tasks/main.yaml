@@ -1,3 +1,10 @@
+- name: Add docker-ce repository
+  become: true
+  yum_repository:
+    name: docker-ce
+    description: docker-ce repo
+    baseurl: https://download.docker.com/linux/fedora/docker-ce.repo
+
 - name: pre-requistes
   become: true
   dnf:
