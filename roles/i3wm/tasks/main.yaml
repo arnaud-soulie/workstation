@@ -14,6 +14,7 @@
     - i3lock
     - 'http://download-ib01.fedoraproject.org/pub/fedora/linux/releases/30/Everything/x86_64/os/Packages/g/giblib-1.2.4-28.fc28.x86_64.rpm'
     - scrot
+    - ImageMagick
     - xautolock
     - fontawesome-fonts
     - powerline-fonts

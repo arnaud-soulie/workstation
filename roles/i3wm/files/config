@@ -104,15 +104,18 @@ exec --no-startup-id "firefox"
 set $ws3 "3|"
 assign [class="Rambox"] $ws3
 exec --no-startup-id "/opt/Rambox/rambox"
-set $ws4 "4|"
-assign [class="Signal"] $ws4
-exec --no-startup-id "signal-desktop"
+set $ws4 "4|"
+#set $ws4 "4|"
+#assign [class="Signal"] $ws4
+#exec --no-startup-id "signal-desktop"
 set $ws5 "5|"
 set $ws6 "6|"
 set $ws7 "7|"
 set $ws8 "8|"
 set $ws9 "9|"
-set $ws10 "10|"
+set $ws10 "10|"
+exec --no-startup-id "/opt/enpass/Enpass"
+for_window [title="^Enpass$"] move container to workspace $ws10
 
 # switch to workspace
 bindsym $mod+ampersand workspace $ws1
@@ -221,7 +224,6 @@ exec_always --no-startup-id numlockx on
 # screenshots
 bindsym --release Shift+Print exec scrot ~/screenshots/screenshot_$(date +%Y%m%d%H%M%S).png
 bindsym --release Print exec scrot -s ~/screenshots/screenshot_$(date +%Y%m%d%H%M%S).png -e 'xclip -selection c -t image/png < $f'
-
 
 #     _             _ _
 #    / \  _   _  __| (_) ___
