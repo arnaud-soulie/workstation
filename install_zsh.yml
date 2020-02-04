@@ -1,0 +1,4 @@
+- name: Install zsh and oh-my-zsh
+  hosts: localhost
+  roles:
+  - name: zsh
