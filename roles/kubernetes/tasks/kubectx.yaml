@@ -1,0 +1,28 @@
+- name: Download kubectx and kubens
+  git:
+    repo: 'https://github.com/ahmetb/kubectx'
+    dest: /opt/kubectx
+
+- name: Add kubectx and kubens to path binaries
+  file:
+    src: "/opt/kubectx/{{ item }}"
+    dest: "/usr/local/bin/{{ item }}"
+    state: link
+  with_items:
+    - kubectx
+    - kubens
+
+- name:  Ensure completion directory exists
+  file:
+    path: "{{ ansible_env.HOME }}/.oh-my-zsh/completions"
+    mode: 0755
+    state: directory
+
+- name: Add completion scripts for kubectx/kubens
+  file:
+    src: "/opt/kubectx/completion/{{ item }}.zsh"
+    dest: "{{ ansible_env.HOME }}/.oh-my-zsh/completions/_{{ item }}.zsh"
+    state: link
+  with_items:
+    - kubectx
+    - kubens

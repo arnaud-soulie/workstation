@@ -10,20 +10,13 @@
         line: '{{ ansible_user_id }} ALL=(ALL) NOPASSWD: ALL'
         validate: 'visudo -cf %s'
 
-    - name: Install needed packages
-      become: true
-      dnf:
-        name: '{{item }}'
-        state: latest
-      loop:
-        - jq
-        - figlet
-        - pass
-        - numlockx
 
-    - name: Disable SELinux
-      selinux:
-        state: disabled
+    - name: Get current username
+      set_fact:
+        user: '{{ lookup("env", "USER") }}'
+
+    - include_role:
+        name: base
 
   roles:
     - name: i3wm
@@ -47,13 +40,3 @@
 
     - name: kubernetes
       tags: kubernetes
-
-    - name: gcloud
-      become: true
-      tags: gcloud
-
-    - name: rambox
-      tags: rambox
-
-    - name: enpass
-      tags: enpass

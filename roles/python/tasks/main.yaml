@@ -1,13 +1,17 @@
 - name: Install needed packages
   become: true
-  dnf:
+  package:
     name: '{{item }}'
     state: latest
   loop:
     - python3-ipython
-    - python3-black
     - python3-neovim
     - pipenv
+
+- name: Install python3 black
+  pip:
+    name: git+git://github.com/psf/black
+    executable: pip3
 
 - name: Add serve function
   blockinfile:

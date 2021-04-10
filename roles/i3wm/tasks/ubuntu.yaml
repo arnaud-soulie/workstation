@@ -1,0 +1,25 @@
+- name: Install i3 and dependencies
+  become: true
+  apt:
+    name: '{{ item }}'
+    state: latest
+  loop:
+    - i3
+    - i3status
+    - suckless-tools
+    - xbacklight
+    - feh
+    - conky
+    - x11-xserver-utils
+    - i3lock
+    - scrot
+    - imagemagick
+    - xautolock
+    - fonts-font-awesome
+    - fonts-powerline
+    - highlight
+    - pulseaudio
+    - pavucontrol
+    - numlockx
+    - nautilus
+    - python3-netifaces

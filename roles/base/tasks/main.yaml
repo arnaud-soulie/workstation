@@ -1,0 +1,25 @@
+- name: Allow '{{ ansible_user_id }}' to have passwordless sudo
+  become: true
+  lineinfile:
+    dest: /etc/sudoers
+    state: present
+    regexp: '^{{ ansible_user_id }}'
+    line: '{{ ansible_user_id }} ALL=(ALL) NOPASSWD: ALL'
+    validate: 'visudo -cf %s'
+
+- name: Disable SELinux
+  selinux:
+    state: disabled
+  when: ansible_distribution == 'Fedora'
+
+- name: Install needed packages
+  become: true
+  apt:
+    name: '{{item }}'
+    state: latest
+  loop:
+    - jq
+    - figlet
+    - pass
+    - numlockx
+    - fzf

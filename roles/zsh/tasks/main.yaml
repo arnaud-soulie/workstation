@@ -1,11 +1,10 @@
 - name: Install zsh and dependencies
   become: true
-  dnf:
+  package:
     name: '{{ item }}'
     state: latest
   loop:
     - zsh
-    - powerline-fonts
     - highlight
 
 - name: Ensure oh-my-zsh not installed
@@ -35,11 +34,17 @@
     repo: https://github.com/zsh-users/zsh-autosuggestions
     dest: '{{ ansible_env.HOME }}/.zsh/zsh-autosuggestions'
 
+- name: Push custom zsh theme
+  copy:
+    src: 'thazelart.zsh-theme'
+    dest: '{{ ansible_env.HOME }}/.oh-my-zsh/custom/themes/thazelart.zsh-theme'
+    mode: 0775
+
 - name: Configure oh-my-zsh theme
   lineinfile:
     path: '{{ ansible_env.HOME }}/.zshrc'
     regexp: '^ZSH_THEME='
-    line: ZSH_THEME="avit"
+    line: ZSH_THEME="thazelart"
 
 - name: Print user on promt
   lineinfile:
@@ -51,8 +56,8 @@
     path: '{{ ansible_env.HOME }}/.zshrc'
     line: 'source {{ ansible_env.HOME }}/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh'
 
-- name: Change '{{ ansible_user }}' default shell
+- name: Change '{{ user }}' default shell
   become: true
   user:
-    name: '{{ ansible_user }}'
+    name: '{{ user }}'
     shell: /usr/bin/zsh

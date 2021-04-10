@@ -1,0 +1,26 @@
+- name: Install i3 and dependencies
+  become: true
+  dnf:
+    name: '{{ item }}'
+    state: latest
+  loop:
+    - i3
+    - i3status
+    - dmenu
+    - xbacklight
+    - feh
+    - conky
+    - xrandr
+    - i3lock
+    - 'http://download-ib01.fedoraproject.org/pub/fedora/linux/releases/30/Everything/x86_64/os/Packages/g/giblib-1.2.4-28.fc28.x86_64.rpm'
+    - scrot
+    - ImageMagick
+    - xautolock
+    - fontawesome-fonts
+    - powerline-fonts
+    - highlight
+    - pulseaudio
+    - pavucontrol
+    - numlockx
+    - nautilus
+    - python3-netifaces

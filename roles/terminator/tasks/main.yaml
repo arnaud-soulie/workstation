@@ -1,6 +1,6 @@
 - name: Get terminator
   become: true
-  dnf:
+  package:
     name: 'terminator'
     state: latest
 
